@@ -51,11 +51,15 @@ The DOCKER_USERNAME variable must be present in the Github secrets environment t
 ## Project run:
 
 ### It is necessary to execute the commands in the infra folder to launch a project, apply migrations, create a superuser, load static, respectively:
-    
+
+Production version:
+
     docker-compose -f docker-compose_prod.yml up -d --build
     docker-compose -f docker-compose_prod.yml exec backend python manage.py migrate
     docker-compose -f docker-compose_prod.yml exec backend python manage.py createsuperuser
     docker-compose -f docker-compose_prod.yml exec backend python manage.py collectstatic --no-input
+
+Develop version:
 
     docker-compose -f docker-compose_develop.yml up -d --build
     docker-compose -f docker-compose_develop.yml exec backend python manage.py migrate
@@ -64,9 +68,19 @@ The DOCKER_USERNAME variable must be present in the Github secrets environment t
 
 You need use docker-compose_develop.yml instead docker-compose_prod.yml for running application in development mode with open ports and running application without docker image and CI
 
+## Documentation endpoints:
+
+    /redoc/
+   
+    /swagger/
+
 Admin panel available at:  
 
     /admin/
+
+API available at:  
+
+    /api/v1/
 
 
 Stop containers command:
@@ -76,13 +90,6 @@ Stop containers command:
 Stop and remove containers command:
 
      docker-compose -f docker-compose_develop.yml down -v
-
-
-## Documentation endpoints:
-
-    /redoc/
-   
-    /swagger/
 
 
 Author: [__Pavel Kalinin__](https://github.com/Pavelkalininn)
