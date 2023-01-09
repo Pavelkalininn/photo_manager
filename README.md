@@ -82,6 +82,34 @@ API available at:
 
     /api/v1/
 
+Names addition find endpoint:
+
+   GET:
+   
+      /api/v1/faces/?name=a
+
+   Response example:
+   
+      {
+          "count": 3,
+          "next": null,
+          "previous": null,
+          "results": [
+              {
+                  "id": 2,
+                  "name": "Adam"
+              },
+              {
+                  "id": 4,
+                  "name": "Abby"
+              },
+              {
+                  "id": 5,
+                  "name": "Ali"
+              }
+          ]
+      }
+
 
 Stop containers command:
 
@@ -90,6 +118,8 @@ Stop containers command:
 Stop and remove containers command:
 
      docker-compose -f docker-compose_develop.yml down -v
+
+Production version of docker-compose file contains certbot for auto updating SSL certificate
 
 
 Author: [__Pavel Kalinin__](https://github.com/Pavelkalininn)
