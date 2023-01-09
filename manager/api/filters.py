@@ -41,7 +41,7 @@ class PhotoFilter(FilterSet):
 
 class FaceFilter(FilterSet):
     name = CharFilter(
-        lookup_expr='istartwith',
+        lookup_expr='istartswith',
         field_name='name'
     )
 
