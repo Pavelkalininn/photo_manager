@@ -1,6 +1,13 @@
-from django.contrib import admin
-from django.contrib.admin import ModelAdmin
-from photo.models import Face, Photo
+from django.contrib import (
+    admin,
+)
+from django.contrib.admin import (
+    ModelAdmin,
+)
+from photo.models import (
+    Face,
+    Photo,
+)
 
 admin.site.empty_value_display = '-пусто-'
 

@@ -1,5 +1,15 @@
-from django_filters import CharFilter, FilterSet
-from photo.models import Face, Photo
+from django_filters import (
+    CharFilter,
+    FilterSet,
+)
+from photo.models import (
+    Face,
+    Photo,
+)
+
+from manager.settings import (
+    PHOTO_FILTER_FIELDS,
+)
 
 
 class PhotoFilter(FilterSet):
@@ -26,13 +36,7 @@ class PhotoFilter(FilterSet):
 
     class Meta:
         model = Photo
-        fields = (
-            'date',
-            'gps_latitude',
-            'gps_longitude',
-            'names',
-            'description'
-        )
+        fields = PHOTO_FILTER_FIELDS
 
     @staticmethod
     def names_filter(queryset, name, value):

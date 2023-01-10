@@ -1,0 +1,52 @@
+<table class="table table-sm" style="font-size:14px;">
+  <form action="{% url 'web:index' %}" method="get">
+    <input size=5 type="submit" value="Поиск/сброс" />
+    <thead class="table-light">
+      <tr>
+        Дата
+        <input size=10 name="date" type="text" placeholder="2022-11-20">
+        Широта
+        <input size=10 name="gps_latitude" type="text" placeholder="54.97158">
+        Долгота
+        <input size=10 name="gps_longitude" type="text" placeholder="73.38318">
+        Имя
+        <input size=10 name="names" type="text" placeholder="Алек">
+        Описание
+        <input size=20 name="description" type="text" placeholder="Фрукты">
+
+      </tr>
+      <tr>
+        <td>
+          <p>id, выбор</p>
+        </td>
+        <td>
+          <br>
+          <p>Фото</p>
+        </td>
+      </tr>
+    </thead>
+  </form>
+
+  {% for char in page_obj %}
+    <tr>
+      <td>
+        <a href="{% url 'web:photo_edit' char.id %}"> Изменить</a><br>
+
+        {% if request.resolver_match.view_name  == 'web:photo_get' %}
+          Дата: {{ char.date }}<br>
+          Широта: {{ char.gps_latitude }}<br>
+          Долгота: {{ char.gps_longitude }}<br>
+          Имена:<br>
+          {% for name in char.names.all %}
+            {{ name }} <br>
+          {% endfor %}
+          Описание: {{ char.description }}<br>
+        {% else %}
+          <a href="{% url 'web:photo_get' char.id %}"> Подробнее</a><br>
+        {% endif %}
+      </td>
+      <td><img src="/media/{{ char.image }}"></td>
+    </tr>
+  {% endfor %}
+</table>
+{% include 'includes/paginator.html' %}

@@ -1,8 +1,22 @@
-from drf_extra_fields.fields import Base64ImageField
-from photo.models import Face, Photo
-from rest_framework.fields import CharField, DateField, FloatField
-from rest_framework.relations import PrimaryKeyRelatedField, StringRelatedField
-from rest_framework.serializers import ModelSerializer
+from drf_extra_fields.fields import (
+    Base64ImageField,
+)
+from photo.models import (
+    Face,
+    Photo,
+)
+from rest_framework.fields import (
+    CharField,
+    DateField,
+    FloatField,
+)
+from rest_framework.relations import (
+    PrimaryKeyRelatedField,
+    StringRelatedField,
+)
+from rest_framework.serializers import (
+    ModelSerializer,
+)
 
 
 class FaceSerializer(ModelSerializer):

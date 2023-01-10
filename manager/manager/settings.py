@@ -1,14 +1,18 @@
 import os
-from pathlib import Path
+from pathlib import (
+    Path,
+)
 
-from dotenv import load_dotenv
+from dotenv import (
+    load_dotenv,
+)
 
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='tokentokentokentokentokentokentokentokentokent')
-DEBUG = os.getenv('DEBUG', default='True')
+DEBUG = os.getenv('DEBUG', default='')
 ALLOWED_HOSTS = ['*']
 
 
@@ -23,9 +27,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'core',
     'djoser',
     'photo',
     'api',
+    'web'
 ]
 
 MIDDLEWARE = [
@@ -39,11 +45,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'manager.urls'
-
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +75,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', default='5432'),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -97,6 +102,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+LOGIN_URL = 'web:login'
+LOGIN_REDIRECT_URL = 'web:index'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
@@ -108,3 +115,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
 }
+
+COUNT_PHOTO_ON_PAGE = 100
+PHOTO_FILTER_FIELDS = (
+    'date',
+    'gps_latitude',
+    'gps_longitude',
+    'names',
+    'description'
+)
