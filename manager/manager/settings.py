@@ -13,8 +13,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='tokentokentokentokentokentokentokentokentokent')
 DEBUG = os.getenv('DEBUG', default='')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    os.getenv('WEB_URL', default='localhost')
+]
+CSRF_TRUSTED_ORIGINS = [
+    '127.0.0.1',
+    'localhost',
+    os.getenv('WEB_URL', default='localhost')
+]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", default='True')
+EMAIL_HOST = os.getenv("EMAIL_HOST", default='ya.ru')
+EMAIL_PORT = os.getenv("EMAIL_PORT", default='100')
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", default='admin@ya.ru')
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", default='password')
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", default='admin@ya.ru')
 
 INSTALLED_APPS = [
     'django.contrib.admin',

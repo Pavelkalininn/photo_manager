@@ -4,7 +4,7 @@
 
 ## Description
 
-###API provides ability:
+### API provides ability:
 
 1. Upload photos to authorized users.
 
@@ -52,14 +52,14 @@ The DOCKER_USERNAME variable must be present in the Github secrets environment t
 
 ### It is necessary to execute the commands in the infra folder to launch a project, apply migrations, create a superuser, load static, respectively:
 
-Production version:
+#### Production version:
 
     docker-compose -f docker-compose_prod.yml up -d --build
     docker-compose -f docker-compose_prod.yml exec backend python manage.py migrate
     docker-compose -f docker-compose_prod.yml exec backend python manage.py createsuperuser
     docker-compose -f docker-compose_prod.yml exec backend python manage.py collectstatic --no-input
 
-Develop version:
+#### Develop version:
 
     docker-compose -f docker-compose_develop.yml up -d --build
     docker-compose -f docker-compose_develop.yml exec backend python manage.py migrate
@@ -68,21 +68,21 @@ Develop version:
 
 You need use docker-compose_develop.yml instead docker-compose_prod.yml for running application in development mode with open ports and running application without docker image and CI
 
-## Documentation endpoints:
+## API Documentation endpoints:
 
     /redoc/
    
     /swagger/
 
-Admin panel available at:  
+#### Admin panel available at:  
 
     /admin/
 
-API available at:  
+#### API available at:  
 
     /api/v1/
 
-Names addition find endpoint:
+#### API Names addition find endpoint:
 
    GET:
    
@@ -110,16 +110,29 @@ Names addition find endpoint:
           ]
       }
 
+### Web version available at:
 
-Stop containers command:
+      /
+
+### Web functions:
+
+   Photo upload with metadata,
+
+   Photo edit with metadata,
+
+   Get photo with metadata,
+
+   Get list of photo without metadata,   
+
+#### Stop containers command:
 
      docker-compose -f docker-compose_develop.yml stop
 
-Stop and remove containers command:
+#### Stop and remove containers command:
 
      docker-compose -f docker-compose_develop.yml down -v
 
-Production version of docker-compose file contains certbot for auto updating SSL certificate
+#### Production version of docker-compose file contains certbot for auto updating SSL certificate
 
 
 Author: [__Pavel Kalinin__](https://github.com/Pavelkalininn)
