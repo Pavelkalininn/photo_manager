@@ -1,17 +1,32 @@
 import os
-from http import HTTPStatus
 
-from api.filters import FaceFilter, PhotoFilter
-from api.serializers import (FaceSerializer, PhotoListSerializer,
-                             PhotoSerializer)
-from django.http import FileResponse
-from django_filters.rest_framework import DjangoFilterBackend
-from photo.models import Face, Photo
-from rest_framework import mixins, viewsets
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from api.filters import (
+    FaceFilter,
+    PhotoFilter,
+)
+from api.serializers import (
+    FaceSerializer,
+    PhotoListSerializer,
+    PhotoSerializer,
+)
+from django_filters.rest_framework import (
+    DjangoFilterBackend,
+)
+from photo.models import (
+    Face,
+    Photo,
+)
+from rest_framework import (
+    mixins,
+    viewsets,
+)
+from rest_framework.permissions import (
+    IsAuthenticated,
+)
 
-from manager.settings import MEDIA_ROOT
+from manager.settings import (
+    MEDIA_ROOT,
+)
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
@@ -45,14 +60,3 @@ class FaceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated, ]
     filterset_class = FaceFilter
     filterset_fields = ('name', )
-
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated, ])
-def media(request, url):
-    return FileResponse(
-        open(f'{MEDIA_ROOT}/{url}', 'rb'),
-        status=HTTPStatus.OK,
-        as_attachment=True,
-        filename=url
-    )

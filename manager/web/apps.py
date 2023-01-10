@@ -3,6 +3,6 @@ from django.apps import (
 )
 
 
-class ApiConfig(AppConfig):
+class WebConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'api'
+    name = 'web'

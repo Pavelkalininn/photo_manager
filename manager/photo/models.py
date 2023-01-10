@@ -1,5 +1,12 @@
-from django.db.models import (CharField, DateField, FloatField, ImageField,
-                              ManyToManyField, Model, TextField)
+from django.db.models import (
+    CharField,
+    DateField,
+    FloatField,
+    ImageField,
+    ManyToManyField,
+    Model,
+    TextField,
+)
 
 
 class Face(Model):
